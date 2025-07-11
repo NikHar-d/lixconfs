@@ -7,15 +7,32 @@
 ~ make
 ~ sudo make install
 ```
-**Setup .xinitrc**
+### Setup .xinitrc
+To find your device, use `xinput list`, then `xinput list-props <device number>`
+
+At the end of file:
 ```
-??? code from lap
+# xinput touchpad "Tapping" enabled
+xinput set-prop 10 335 1
+
 exec dwm
 ```
 
-**Configuring entry for [ly](https://github.com/fairyglade/ly)**
+Also make sure you have `xorg-xinit` package installed and `.xinitrc` has code.
+
+If not: `cp /etc/X11/xinit/xinitrc ~/.xinitrc`
+
+### Configuring entry for [ly](https://github.com/fairyglade/ly)
+
+Somewhy xsessions does not work, so using wayland-sessions:
+
+`/usr/share/wayland-sessions/dwm.desktop`
 ```
-??? wayland thing here
+[Desktop Entry]
+Name=dwm
+Comment=MyCustomEntryToStartDWM
+Exec=startx
+Type=application
 ```
 
 ## NVIM installation
