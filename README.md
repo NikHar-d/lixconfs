@@ -1,5 +1,5 @@
 ## DWM installation
-**Installing dwm**
+### Installing dwm
 ```
 ~ git clone https://git.suckless.org/dwm
 ~ cd dwm
@@ -36,3 +36,17 @@ Type=application
 ```
 
 ## NVIM installation
+### Installing neovim
+`pacman -S neovim`
+
+### Configuration tree
+Must be like:
+```
+.config/nvim
+├─ init.lua
+└─ lua
+   ├─ keymaps.lua
+   ├─ ...
+   └─ ...
+```
+where `init.lua` can `require()` files in lua folder, like `require("keymaps")`
