@@ -50,3 +50,18 @@ Must be like:
    └─ ...
 ```
 where `init.lua` can `require()` files in lua folder, like `require("keymaps")`
+
+## Flameshot setting
+`pacman -S flameshot`
+
+To launch flameshot you need superuser previlegy so for hotkey you do:
+```
+EDITOR=nvim visudo
+```
+and somewhere (i prefer under user setting) type in
+```
+<username> <host> = (root) NOPASSWD: /usr/bin/flameshot
+```
+where <username> is your user in **user**@lixdistro and <host> is host in user@**lixdistro**
+
+Now to launch flameshot make a hotkey for command `sudo flameshot gui`
