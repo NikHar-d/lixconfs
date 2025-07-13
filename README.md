@@ -65,3 +65,9 @@ and somewhere (i prefer under user setting) type in
 where <username> is your user in **user**@lixdistro and <host> is host in user@**lixdistro**
 
 Now to launch flameshot make a hotkey for command `sudo flameshot gui`
+
+## Keyboard layout change
+In `.xinitrc` somewhere before `exec dwm`:
+```
+setxkbmap -layout "us,ru" -option 'grp:win_space_toggle'
+```
