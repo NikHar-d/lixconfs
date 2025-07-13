@@ -12,3 +12,4 @@ vim.keymap.set("n", "<leader>k", "<c-w>l")
 -- vim.keymap.set("n", "<leader>k", "<c-w>k")
 
 vim.keymap.set("n", "<c-s>", ":noh<cr>")
+vim.keymap.set("v", "<c-s>", ":noh<cr>")
