@@ -3,3 +3,5 @@ require("options")
 require("plugins.lazy")
 require("plugins.keymaps")
 require("plugins.options")
+
+vim.cmd("colorscheme habamax")

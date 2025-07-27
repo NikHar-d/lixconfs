@@ -54,6 +54,7 @@ require('lazy').setup({
       local cmp_action = lsp_zero.cmp_action()
 
       cmp.setup({
+		    completion = {keyword_length = 0; autocomplete = false;},
         formatting = lsp_zero.cmp_format({details = true}),
         mapping = cmp.mapping.preset.insert({
           ['<C-Space>'] = cmp.mapping.complete(),
