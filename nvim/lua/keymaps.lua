@@ -13,3 +13,6 @@ vim.keymap.set("n", "<leader>k", "<c-w>l")
 
 vim.keymap.set("n", "<c-s>", ":noh<cr>")
 vim.keymap.set("v", "<c-s>", ":noh<cr>")
+
+vim.keymap.set("n", "<c-s>", ":w<cr>")
+vim.keymap.set("i", "<c-s>", "<esc>:w<cr>a")
