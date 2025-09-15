@@ -8,11 +8,9 @@ vim.keymap.set("n", "<leader>x", ":bd<cr>")
 
 vim.keymap.set("n", "<leader>j", "<c-w>h")
 vim.keymap.set("n", "<leader>k", "<c-w>l")
--- vim.keymap.set("n", "<leader>j", "<c-w>j")
--- vim.keymap.set("n", "<leader>k", "<c-w>k")
 
-vim.keymap.set("n", "<c-s>", ":noh<cr>")
-vim.keymap.set("v", "<c-s>", ":noh<cr>")
+vim.keymap.set("n", "<c-a>", ":noh<cr>")
+vim.keymap.set("v", "<c-a>", ":noh<cr>")
 
 vim.keymap.set("n", "<c-s>", ":w<cr>")
 vim.keymap.set("i", "<c-s>", "<esc>:w<cr>a")
