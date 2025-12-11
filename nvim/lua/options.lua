@@ -3,5 +3,3 @@ vim.opt.relativenumber = true -- relative line numbers
 
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
-
-guifont='Cascadia Mono Semibold:h10'
