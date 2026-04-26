@@ -1,0 +1,117 @@
+UEFI ONLY!
+
+--help--
+| > something - not commands, just text
+| <SOMETHING> - enter here data, that you need
+
+--download linux arch .iso link--
+| https://archlinux.org/download/
+| scroll down and find nearest server to download for faster downloading
+| click it, then on page find "archlinux-<DATE>-x86_64.iso"
+| now do a loader USB with "rufus" or load it in virtual machine
+
+--main screen--
+| First button you need for installation
+| "Boot existing OS" you need to run after installing linux
+
+--connect to internet (if no lan cabel or virtual machine)--
+| iwctl
+| device list
+| > device name is wlan0
+| device wlan0 set-property Powered on
+| adapter <adapter on wlan0> set-property Powered on
+| station wlan0 scan
+| station wlan0 get-networks
+| station wlan0 connect <your wifi>
+| > wifi password
+| quit
+--disk setup--
+| cfdisk
+| > select "gpt" if exists
+| > create 100M, 4G and on all free space partitions
+| > sda1 - 100M, sda2 - 4G, sda3 - all
+| > select and chose "[  Write  ]" on the bottom panel
+| yes
+| > select and chose "[  Quit  ]" on the bottom panel
+| mkfs.ext4 /dev/sda3
+| mkfs.fat -F 32 /dev/sda1
+| mkswap /dev/sda2
+| mount /dev/sda3 /mnt
+| mkdir -p /mnt/boot/efi
+| mount /dev/sda1 /mnt/boot/efi
+| swapon /dev/sda2
+--pack installation--
+| pacstrap /mnt linux linux-firmware base base-devel efibootmgr grub sof-firmware networkmanager nano (if need on VM ->)virtualbox-guest-utils
+| > took ~10 minutes
+--generate file system tab--
+| genfstab /mnt > /mnt/etc/fstab
+--going into system--
+| arch-chroot /mnt
+--set time (UTC+3)--
+| ln -sf /usr/share/zoneinfo/Asia/Amman /etc/localtime
+| hwclock --systohc
+--localization--
+| nano /etc/locale.gen
+| > delete "#" before "en_US.UTF-8 UTF-8"
+| > ctrl+X, Y, enter
+| nano /etc/locale.conf
+| > type "LANG=en_US.UTF-8" 
+| > ctrl+X, Y, enter
+| nano /etc/vconsole.conf
+| > type "KEYMAP=en" (if "-" and "=" do not work, set "KEYMAP=us")
+| > ctrl+X, Y, enter
+| locale-gen
+--rename computer ([user@computer] will be in console)--
+| nano /etc/hostname
+| > type any computer name
+| > ctrl+X, Y, enter
+--users, passwords, computer, sudoers--
+| passwd
+| <ANYPASSWORD>
+| <RETYPE THIS PASSWORD>
+| useradd -m -s /bin/bash <USERNAME>
+| passwd <USERNAME>
+| <ANYPASSWORD>
+| <RETYPE THIS PASSWORD>
+| EDITOR=nano visudo
+| > type somewhere on new line "<USERNAME> ALL=(ALL:ALL) ALL" 
+| > ctrl+X, Y, enter
+--enable network manager--
+| systemctl enable NetworkManager
+--boot loader--
+| grub-install /dev/sda --force
+| grub-mkconfig -o /boot/grub/grub.cfg
+--exit and reboot--
+| exit
+| umount -a
+| reboot
+| > Linux installed!
+| > choose "Boot existing OS in menu"
+
+--if you want desktop (plasma)--
+sudo pacman -S plasma sddm
+sudo pacman -S konsole kate firefox
+sudo systemctl enable --now sddm
+
+--releasing usb--
+| > now turn off the machine
+| shutdown now
+| > and remove usb with iso
+| > arch will load now automaticlly
+
+--packages installed--
+175
+
+--you are using arch btw--
+:)
+
+
+--if no fullscreen - while setting up VBox machine, chech "EFI"--
+| sudo pacman -S virtualbox-guest-utils
+| sudo modprobe -a vboxguest vboxsf vboxvideo
+| sudo systemctl enable vboxservice.service
+| video=1920x1080x32
+| sudo nano /etc/default/grub
+| > GRUB_GFXMODE=auto change to 1920x1080x32
+| sudo grub-mkconfig -o /boot/grub/grub.cfg
+| reboot

@@ -1,0 +1,2 @@
+unzip: bsdtar -x -f file
+where command file: which command

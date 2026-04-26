@@ -1,0 +1,11 @@
+pacstrap: libpgm is corrupted
+pacman -Sy archlinux-keyring
+
+polkit needed to run shutdown;reboot;poweroff;halt;etc without sudo
+
+pacman: warning: Public keyring not found; have you run 'pacman-key --init'
+or
+pacman: invalid or corrupted package (pgp signature)
+sudo rm -r /etc/pacman.d/gnupg
+sudo pacman-key --init
+sudo pacman-key --populate archlinux

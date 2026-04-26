@@ -1,0 +1,25 @@
+|command
+> comment
+
+
+|sudo fdisk -l
+> we need 512M EFI System
+> getting id
+|sudo blkid /dev/nvme0n1p1
+> return is: dev/nvme0n1p1: UUID="3C26-6A4C" BLOCK_SIZE="512" TYPE="vfat" PARTLABEL="EFI System Partition" PARTUUID="3b64b43f-e7eb-4ac8-a32c-9af2edf64d0d"
+|cd /etc/grub.d
+|sudo chmod o+w 40_custom
+|sudo nano ./40_custom
+> at the bottom of file:
+menuentry 'Windows 11' {
+    search --fs-uuid --no-floppy --set=root 3C26-6A4C
+    chainloader (${root})/EFI/Microsoft/Boot/bootmgfw.efi
+}
+> save and exit
+|sudo chmod o-w 40_custom
+|sudo update-grub
+> if not exist update-grub, it's just a command in /usr/sbin/update-grub
+#!/bin/sh
+set -e
+exec grub-mkconfig -o /boot/grub/grub.cfg "$@"
+|reboot

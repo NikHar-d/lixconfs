@@ -1,0 +1,9 @@
+nmcli radio wifi
+nmcli radio wifi on # if not on
+# not need must times ^
+
+nmcli dev wifi list
+sudo nmcli dev wifi connect SSID_OF_YOUR_WIFI password "PASSWORD_OF_YOUR_WIFI"
+> or you can do:
+sudo nmcli dev wifi connect SSID_OF_YOUR_WIFI -a
+> and type your password safely
