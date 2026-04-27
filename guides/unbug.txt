@@ -9,3 +9,14 @@ pacman: invalid or corrupted package (pgp signature)
 sudo rm -r /etc/pacman.d/gnupg
 sudo pacman-key --init
 sudo pacman-key --populate archlinux
+
+pacstrap and pacman mirrorlist and keyring errors:
+// write to /etc/pacman.d/mirrorlist 10 best servers
+reflector --latest 10 --sort rate --save /etc/pacman.d/mirrorlist
+// install keyring
+pacman -Sy archlinux-keyring
+// update keyring
+pacman-key --init
+pacman-key --populate archlinux
+// sync keyring to pacstrap
+pacstrap -K /mnt
