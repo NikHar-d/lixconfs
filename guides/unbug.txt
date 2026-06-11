@@ -11,6 +11,7 @@ sudo pacman-key --init
 sudo pacman-key --populate archlinux
 
 pacstrap and pacman mirrorlist and keyring errors:
+// if have no pacstrap, update keyring and install it
 // write to /etc/pacman.d/mirrorlist 10 best servers
 reflector --latest 10 --sort rate --save /etc/pacman.d/mirrorlist
 // install keyring
