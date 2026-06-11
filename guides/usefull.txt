@@ -1,2 +1,8 @@
 unzip: bsdtar -x -f file
 where command file: which command
+find files by name: find /path/to/search -type f -name "*.txt"
+^ types can be f=file d=directory
+
+set large tty font
+> sudo pacman -S terminus-font
+> setfont ter-132n
